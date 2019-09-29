@@ -2,6 +2,14 @@ import PySimpleGUI as sg
 import encrypt, key_management
 import os.path
 
+dirname = os.path.dirname(__file__)
+setuppath = os.path.join(dirname, 'setup.txt')
+
+with open(setuppath, 'r') as f:
+    setup_file = f.read()
+
+
+
 def setup():
     dirname = os.path.dirname(__file__)
     filename = os.path.join(dirname, 'logo.png')
@@ -35,8 +43,8 @@ def setup():
                 
                 layout = [[sg.Image(filename)],
                     [sg.Text('Create a password')],    
-                    [sg.Text('Password', size=(10, 1)), sg.Input()],      
-                    [sg.Text('Re-enter Password', size=(10, 1)), sg.Input()],      
+                    [sg.Text('Password', size=(10, 1)), sg.Input(password_char="*")],      
+                    [sg.Text('Re-enter Password', size=(10, 1)), sg.Input(password_char="*")],      
                     [sg.Submit(), sg.Cancel()]]      
 
                 window = sg.Window('Initial Setup', layout)  
@@ -52,6 +60,11 @@ def setup():
                 if (password1 == password2):
                     key_management.create_passwd(password1, (USB_filename + "/password.txt"))
                     key_management.generate_file_key(USB_filename + "/key.txt")
+                    setupfile = os.path.join(dirname, 'setup.txt')
+                    
+                    with open(setupfile, 'w') as f:
+                        f.write("1")
+
                     i = 2
                 else:
                     layout = [[sg.Image(filename)],

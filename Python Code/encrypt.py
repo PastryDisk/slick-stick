@@ -1,9 +1,13 @@
 from cryptography.fernet import Fernet
-import key_management
+import key_management, app
 
 
 def encrypt_file(file):
-    key = key_management.get_key_file()
+    x = file.split("/")
+
+    l = len(x)
+
+    key = app.key_file
 
     fe = Fernet(key)
 
@@ -12,8 +16,9 @@ def encrypt_file(file):
 
     encrypted = fe.encrypt(data)
 
-    with open(file + ".enc", 'wb') as f:
+    name = app.vault_path + "/" + x[l-1]
+
+    with open(name + ".enc", 'wb') as f:
         f.write(encrypted)
     
-    return encrypted
 

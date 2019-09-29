@@ -1,8 +1,8 @@
 from cryptography.fernet import Fernet
-import key_management
+import key_management, os, app
 
 def decrypt_file(file):
-    key = key_management.get_key_file()
+    key = app.key_file
 
     fe = Fernet(key)
 
@@ -15,3 +15,5 @@ def decrypt_file(file):
 
     with open(file, 'wb') as f:
         f.write(encrypted)
+
+
