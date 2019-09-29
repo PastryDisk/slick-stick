@@ -1,5 +1,4 @@
 import key_management, encrypt
-import UIfunctions
 import sys
 
 def run():
@@ -14,5 +13,3 @@ def run():
     if (file_encry == "Y"):
         file_name = input("What file would you like to encrypt?")
         encrypt.encrypt_file("C:/Users/jakob/OneDrive/Documents/Grizzhacks 4/Files/" + file_name)
-
-UIfunctions.browse_vault()

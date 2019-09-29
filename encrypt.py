@@ -16,6 +16,8 @@ def encrypt_file(file):
         f.write(encrypted)
 
     os.remove(file)
+    
+    return encrypted
 
     
 
