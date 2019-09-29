@@ -1,15 +1,11 @@
-import key_management, encrypt
+import key_management, encrypt, setup, app
 import sys
 
-def run():
-    text = input("Please enter a password: ")
-    print("Your password is: " + text)
-    print("Your password hash is: " + str(key_management.create_passwd(text)))
-    text2 = input("Please enter your password again: ")
-    print(key_management.check_passwd(text2))
-    key_management.generate_file_key()
+#setup.setup()
+app.app()
 
-    file_encry = input("Would you like to encrypt a file? (Y/n) ")
-    if (file_encry == "Y"):
-        file_name = input("What file would you like to encrypt?")
-        encrypt.encrypt_file("C:/Users/jakob/OneDrive/Documents/Grizzhacks 4/Files/" + file_name)
+#What if you select two different drives by the USB location isn't a USB?
+#What if someone changes the encrypted text in a file?
+#Prompt user for password
+#Select files to encrypt, what happens if not valid path?
+#initialize_filepaths() is never called
